@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Backbone.js Web App</title>
+	<link rel="stylesheet" type="text/css" href="css/screen.css">
+</head>
+<body>
+	<header><h1>This is the header</h1></header>
+	<div id="sidebar">
+		<h3>This is the sidebar</h3>
+		<a href="index.html" id="hiding">Back to list</a>
+	</div>
+	<div id="main">
+		<div id="main-list">
+			<table>
+				<tr>
+					<td>First Name</td>
+					<td>Last Name</td>
+					<td>Telephone</td>
+					<td>Product</td>
+					<td>Transaction #</td>
+					<td>Amount</td>
+					<td>Type</td>
+					<td>Detailed View</td>
+				</tr>
+			</table>
+			<div id="transactions"></div>
+		</div>
+	</div>
+	<script id="order-item" type="text/template">
+		<td><%= first_name %></td>
+		<td><%= last_name %></td>
+		<td><%= telephone %></td>
+		<td><%= product %></td>
+		<td><%= transnumber %></td>
+		<td><%= amount %></td>
+		<td><%= type %></td>
+		<td><a id="button" href="#contacts/<%= id %>" data-id="<%= id %>">Detailed View</a></td>
+	</script>
+
+	<script id="order-details" type="text/template">
+		<h2><%= first_name %> <%= last_name %></h2>
+		<div class="info-box">
+			<h4>Contact</h4>: <%= telephone %><br />
+			<h4>Shipping</h4>: <%= address %>
+			<h4>Transaction</h4>: <%= transnumber %>
+		</div>
+		<div class="product-box">
+			Type: <%= type %>
+			Product: <%= product %>
+			Price: <%= price %>
+			Qty:<%= amount %>
+		</div>
+	</script>
+	<script src="js/jQuery-min.js"></script>
+	<script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"> </script>
+	<script src="js/json2.js"></script>
+	<script src="js/Underscore-min.js"></script>
+	<script src="js/Backbone-min.js"></script>
+	<script src="js/app.js"></script>
+	<script>
+	$(document).ready(function(){
+	    $("#hiding").click(function () {
+	      $("#hiding").hide("fast", function () {
+	        $(this).prev().hide("fast", arguments.callee)
+	        $("h3").text("Detailed view, indeed!"); 
+	      });
+	    });
+	    $("#button").click(function () {
+	      $("#hiding").show(2000);
+	      $("h3").text("Detailed view, indeed!");
+	    });
+	});
+	</script>
+</body>
+</html>
